@@ -1,5 +1,5 @@
 package Model;
-/**  The class Monnaie represent the model of our data **/
+/**  Cette classe représente le model de nos données (récupérés en streaming) **/
 import java.io.Serializable;
 	public  class Monnaie implements Serializable {
 		private static final long serialVersionUID = 1L;
