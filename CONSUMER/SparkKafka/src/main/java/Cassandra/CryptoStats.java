@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class CryptoStats implements Serializable {
 
 	/**
-	 * 
+	 * Cette classe reporésente le model logique des enregistrement de la table Stats
 	 */
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -15,7 +15,6 @@ public class CryptoStats implements Serializable {
 	private Double tauxMarche;
 	public CryptoStats() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public CryptoStats(String name, Double rsi_1h, Double rsi_24h, Double rsi_7d, Double rsi_annualise,
 			Double tauxMarche) {
