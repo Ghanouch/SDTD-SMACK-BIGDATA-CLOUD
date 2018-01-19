@@ -4,9 +4,9 @@ Prérequis: Installer terraform: https://www.terraform.io/intro/getting-started/
 Guide d'utilisation du script:
 
 	1-Génerer 2 clé RSA une pour le bastion et l'autre pour le reste de la stack grâce à: "ssh-keygen"
-	  #Vous devez choisir les noms "deployer" et "cluster_interconnection" respectivement pour la clé du bastion 
+	  +Vous devez choisir les noms "deployer" et "cluster_interconnection" respectivement pour la clé du bastion 
 	   et la clé de la stack
-	  #Elles doivent être mises dans le dossier "terraform"
+	  +Elles doivent être mises dans le dossier "terraform"
 
 		#ssh-keygen
 
