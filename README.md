@@ -11,12 +11,15 @@ I - LANCER LE DEPLOIEMENT
 ENTRER SUR LE CHEMIN SUIVANT  : 
 #cd EPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform
 
+#####
+Prérequis: Installer terraform: https://www.terraform.io/intro/getting-started/install.html
+#####
 Guide d'utilisation du script:
 
 	1-Génerer 2 clé RSA une pour le bastion et l'autre pour le reste de la stack grâce à: "ssh-keygen"
-	  Vous pouvez choisir le nom que vous voulez, exemple : deployer et cluster_interconnection
-	  Elles doivent être mises dans le dossier "terraform"
-
+	  +Vous devez choisir les noms "deployer" et "cluster_interconnection" respectivement pour la clé du bastion 
+	   et la clé de la stack
+	  +Elles doivent être mises dans le dossier "terraform"
 		#ssh-keygen
 
 	2-Ouvrir le fichier "secret.tfvars" dans le dossier "terraform" et remplir les champs suivants:
@@ -24,9 +27,7 @@ Guide d'utilisation du script:
 	  + region: la région où le cluster va être déployé, exemple: "us-east-1"
 	  + ami: ami de la machine ubuntu 16.04 d'AWS, on la retrouve lorsqu'on essaie de créer manuellement une machine
 	  + cassandra_ami: même que "ami" mais celle de ubuntu 14.04
-	  + deployer_key_name: le nom de la clé publique utilisée pour le bastion
 	  + deployer_public_key: le contenu de la clé publique du bastion
-	  + cluster_key_name: le nom de la clé publique utilisée pour la stack
 	  + cluster_public_key: le contenu de la clé publique de la stack
 	  + cassandra_instance_type: la taille des machines cassandra (minimum medium)
 	  + opscenter_instace_type: la taille de la machine opscenter (minimum medium)
@@ -34,7 +35,10 @@ Guide d'utilisation du script:
 	3-Ouvrir le fichier wrap-up.sh est remplir les champs indiqués (ceux des noms des clés privées)
 
 	4-Lancer le script wrap-up.sh en sudo si possible (parfois il faut des droits d'administrateur)
-
+        
+	
+Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisé la commande suivante:
+		+terraform destroy -var-file secret.tfvar
 ######
 
 
