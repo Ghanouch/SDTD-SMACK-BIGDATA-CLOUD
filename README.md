@@ -40,7 +40,7 @@ Guide d'utilisation du script:
 
 II - LANCER LE CAS D'UTILISATION
 
-	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection_key,deploy_key )  QUI SONT SUR le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER
+	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection,deploy )  QUI SONT SUR le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER
 	     "AUTOMATISATION USE CASE"
 
 		#cd SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION USE CASE
