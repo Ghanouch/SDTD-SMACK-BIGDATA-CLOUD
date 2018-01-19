@@ -53,8 +53,8 @@ $(echo > hosts | terraform output producer_ip)
 
 EOF
 
-scp -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no "nom de la clé privée du cluster" ubuntu@$bastion_public_ip:~/.ssh/id_rsa 
-scp -r -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no ../ansible ubuntu@$bastion_public_ip:~/ 
-scp -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no hosts ubuntu@$bastion_public_ip:~/ansible/ 
+scp -i deployer -o StrictHostKeyChecking=no cluster_interconnection ubuntu@$bastion_public_ip:~/.ssh/id_rsa 
+scp -r -i deployer -o StrictHostKeyChecking=no ../ansible ubuntu@$bastion_public_ip:~/ 
+scp -i deployer -o StrictHostKeyChecking=no hosts ubuntu@$bastion_public_ip:~/ansible/ 
 
-ssh -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no ubuntu@$bastion_public_ip "export ANSIBLE_HOST_KEY_CHECKING=False && cd ansible && ansible-playbook -i hosts main.yml" 
+ssh -i deployer -o StrictHostKeyChecking=no ubuntu@$bastion_public_ip "export ANSIBLE_HOST_KEY_CHECKING=False && cd ansible && ansible-playbook -i hosts main.yml" 
