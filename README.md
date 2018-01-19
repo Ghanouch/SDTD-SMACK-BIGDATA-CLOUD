@@ -43,14 +43,13 @@ Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform"
 
 II - LANCER LE CAS D'UTILISATION
 
-	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection,deploy )  QUI SONT SUR le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER
-	     "AUTOMATISATION USE CASE"
+	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection,deployer )  QUI SONT SUR le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER "AUTOMATISATION USE CASE"
 
-		#cd SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION USE CASE
+		#cd AUTOMATISATION\ USE\ CASE/
 
-		#cp ../DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/hosts .
-		#cp ../DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/deploy .
-		#cp ../DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/cluster_interconnection .
+		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/hosts .
+		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/deployer .
+		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/cluster_interconnection .
 
 	2- ENTRER SUR LE DOSSIER "AUTOMATISATION USE CASE"
 
@@ -62,13 +61,14 @@ II - LANCER LE CAS D'UTILISATION
 			http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 
  		2.2 AVOIR LE JOB A PARTIR DU CODE SOURCE SUR LE DOSSIER : "CONSUMER/SparkKafka" PAR MAVEN 
-			# cd CONSUMER/SparkKafka
+			 # cd SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/
 			 # mvn package 
-			 #copier le jar existant à CONSUMER/SparkKafka/target/ sur "AUTOMATISATION USE CASE"
-			 #le renomer à RDD_Crypto.jar
+			 copier le jar généré sur "AUTOMATISATION USE CASE" et le renomer à RDD_Crypto.jar
+			 # mv target/SparkKafka-0.0.1-SNAPSHOT.jar RDD_Crypto.jar
+			 # cp RDD_Crypto.jar ../../AUTOMATISATION\ USE\ CASE/
 	
 	2-2-Configurer l'ensemble des paramétres :
-		    2-1-1 sur le fichier "UseCase.sh"
+		    2-1-1 sur le fichier "UseCase.sh" ( Path  : SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION\ USE\ CASE/)
 
 			# PARAMS OF TOPIC CREATION 
 			TOPIC_NAME="NV_TOPIC"
@@ -79,17 +79,20 @@ II - LANCER LE CAS D'UTILISATION
 			BORNE_MINIMAL="0"
 			BORNE_MAXIMAL="25"
 			SPEED="2"
-		   2-1-2 sur le fichier "Remote-UseCase.sh"
+
+		    2-1-2 sur le fichier "Remote-UseCase.sh"
+
 			# PARAMS OF KEY NAMES AND PATHS
-			NOM_CLE_DEPLOY = "deploy"
+			NOM_CLE_DEPLOY = "deployer"
 			NOM_SCRIPT_HOSTS="hosts"
 			NOM_KEY_INTERCONNECTION="cluster_interconnection"
 			NOM_JOB_CONSUMER="RDD_Crypto.jar"
 			
 	3- LANCER LE FLUX DE CAS D'UTILISATION sur "AUTOMATISATION USE CASE"
-		# cd "AUTOMATISATION USE CASE"
+		# cd AUTOMATISATION\ USE\ CASE/
 		# sh Remote-UseCase.sh
-	4- VISUALISATION DES RESULTATS SUR CASSANDRA OU PAR UN OUTILS DE VISUALISATION	
+
+	4- VISUALISATION DES RESULTATS SUR CASSANDRA OU PAR UN OUTILS DE VISUALISATION.	
 
 
 III -  TOLERANCE AUX PANNES    

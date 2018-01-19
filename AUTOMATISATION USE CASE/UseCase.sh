@@ -1,6 +1,24 @@
 #!/bin/bash
 
-#I-- The extraction of the set of Ip addresses, each represents a machine on which is installed a specific service
+
+#I-- Set all the parameters
+
+# PARAMS OF TOPIC CREATION 
+TOPIC_NAME="NV_TOPIC"
+REP_FACTOR="1"
+
+# PARAMS OF PRODUCER JOB
+BORNE_MINIMAL="0"
+BORNE_MAXIMAL="25"
+SPEED="2"
+
+# PARAMS OF CONSUMER 
+LIEN_JOB_CONSUMER="https://docs.google.com/uc?export=download&id=1R56-3o1JJk2tlMgxGVHR-9vYZSZmgjkw"
+className="RddStatistique"
+
+
+
+#II-- The extraction of the set of Ip addresses, each represents a machine on which is installed a specific service
 
 #2 Kafka IP 
 cmd_kafka=`grep -n "kafka" hosts | cut -d : -f1`
@@ -23,27 +41,13 @@ MESOS_MASTER=$(head -n $((cmd_prod+1)) hosts | tail -n 1)
 cmd_Cassandra=`grep -n "cassandra" hosts | cut -d : -f1`
 CASSANDRA=$(head -n $((cmd_prod+1)) hosts | tail -n 1)
 
-#II-- Set all the parameters
-
-# PARAMS OF TOPIC CREATION 
-TOPIC_NAME="NV_TOPIC"
-REP_FACTOR="1"
-
-# PARAMS OF PRODUCER JOB
-LIEN_JOB_PRODUCER="https://docs.google.com/uc?export=download&id=1QO4hABoVMplr_IKkZA87BesDWcRdRCdy"
-BORNE_MINIMAL="0"
-BORNE_MAXIMAL="25"
-SPEED="2"
-
-# PARAMS OF CONSUMER 
-LIEN_JOB_CONSUMER="https://docs.google.com/uc?export=download&id=1R56-3o1JJk2tlMgxGVHR-9vYZSZmgjkw"
-className="RddStatistique"
 
 #III--The creation of the Topic on one or more Kafka broker, while specifying a set of parameters (Zookeper IP, the factor of replication, the name of the Topic)
 
 ssh -i cluster_interconnection ubuntu@$KAFKA1 /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --create --replication-factor $REP_FACTOR --partitions 1 --zookeeper $ZK1:2181 --topic $TOPIC_NAME
 
 #IV-- Launch of JOB PRODUCER on a machine that has the role producer 
+LIEN_JOB_PRODUCER="https://docs.google.com/uc?export=download&id=1QO4hABoVMplr_IKkZA87BesDWcRdRCdy"
 
 cmd_get_producer="wget '$LIEN_JOB_PRODUCER' -O Producer_Crypto.tar.gz"
 NOM_JOB_PRODUCER="Producer_Crypto.jar"

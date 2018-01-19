@@ -1,0 +1,9 @@
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/Model/Rsi.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/Cassandra/CassandraClient.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/RddStatistique.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/Cassandra/CassandraConnector.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/Cassandra/CryptoStats.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/Model/Monnaie.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/repository/KeyspaceRepository.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/Model/GlobalStat.java
+/home/hadoop1/GIT /SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/src/main/java/repository/CryptoStatsRepository.java
