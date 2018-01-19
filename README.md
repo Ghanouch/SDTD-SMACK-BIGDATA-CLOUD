@@ -98,7 +98,7 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 			NOM_KEY_INTERCONNECTION="cluster_interconnection"
 			NOM_JOB_CONSUMER="RDD_Crypto.jar"
 			
- - Lancer l'jar sur "AUTOMATISATION USE CASE"
+ - Lancer le script sur "AUTOMATISATION USE CASE"
 ```
 		# cd AUTOMATISATION\ USE\ CASE/
 		# sh Remote-UseCase.sh
