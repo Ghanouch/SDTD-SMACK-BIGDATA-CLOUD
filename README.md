@@ -118,7 +118,7 @@ III -  TOLERANCE AUX PANNES
 	  2 - VERIFIER LE NOUVEAU LEADER { les machines vivants ainsi que les machines mortes }
 	  		#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 				$TOPICNAME | grep Leader
 
-2 - TOLERANCE AUX FAUTES " ZOOKEPER "
+2 - TOLERANCE AUX FAUTES " zookeeper  "
 
 
 		1 -   CREER UN TOPIC EN LE DONNANT DEUX MACHINES ZOOKEPER 
@@ -135,6 +135,5 @@ III -  TOLERANCE AUX PANNES
 
 PS : plus de détail, veuillez consulter le rapport ci-joint 
 
--------------------- FIN 
 
 	
