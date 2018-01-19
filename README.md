@@ -40,14 +40,14 @@ Guide d'utilisation du script:
 
 II - LANCER LE CAS D'UTILISATION
 
-	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection_key,deploy_keyY )  QUI SONT SUR le dossier "DEPLOIEMENT/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER
+	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection_key,deploy_key )  QUI SONT SUR le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER
 	     "AUTOMATISATION USE CASE"
 
 		#cd SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION USE CASE
 
-		#cp DEPLOIEMENT/terraform/hosts .
-		#cp DEPLOIEMENT/terraform/deploy_cle .
-		#cp DEPLOIEMENT/terraform/cluster_interconnection_cle .
+		#cp DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/hosts .
+		#cp DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/deploy_cle .
+		#cp DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/cluster_interconnection_cle .
 
 	2- ENTRER SUR LE DOSSIER "AUTOMATISATION USE CASE"
 
@@ -62,6 +62,13 @@ II - LANCER LE CAS D'UTILISATION
 			BORNE_MINIMAL="0"
 			BORNE_MAXIMAL="25"
 			SPEED="2"
+			
+			# PARAMS OF KEY NAMES AND PATHS
+			NOM_CLE_DEPLOY = "deploy"
+			NOM_SCRIPT_HOSTS="hosts"
+			NOM_KEY_INTERCONNECTION="cluster_interconnection"
+			NOM_JOB_CONSUMER="RDD_Crypto.jar"
+			
 
 
 		 2-2.- METTRE SUR LE DOSSIER "AUTOMATISATION USE CASE" LE JOB DE CONSUMER 
