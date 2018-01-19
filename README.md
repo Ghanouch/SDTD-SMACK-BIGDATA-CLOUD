@@ -9,7 +9,7 @@ Copier le projet sur votre rmachine :
 I - LANCER LE DEPLOIEMENT
 
 ENTRER SUR LE CHEMIN SUIVANT  : 
-#cd EPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform
+#cd DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform
 
 #####
 Prérequis: Installer terraform: https://www.terraform.io/intro/getting-started/install.html
@@ -32,14 +32,12 @@ Guide d'utilisation du script:
 	  + cassandra_instance_type: la taille des machines cassandra (minimum medium)
 	  + opscenter_instace_type: la taille de la machine opscenter (minimum medium)
 
-	3-Ouvrir le fichier wrap-up.sh est remplir les champs indiqués (ceux des noms des clés privées)
-
-	4-Lancer le script wrap-up.sh en sudo si possible (parfois il faut des droits d'administrateur)
+	3-Lancer le script wrap-up.sh en sudo si possible (parfois il faut des droits d'administrateur)
         
 	
 Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisez la commande suivante:
 
-		+terraform destroy -var-file secret.tfvar
+		+terraform destroy -var-file secret.tfvars
 ######
 
 
