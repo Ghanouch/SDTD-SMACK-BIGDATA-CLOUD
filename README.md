@@ -1,9 +1,11 @@
 # Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud
 
------------------------------- GUIDE D'INSTALLATION ET D'UTILISATION 
+Lien :   https://github.com/Ghanouch/Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud.git
 
-Copier le projet sur votre rmachine : 
+Copier le projet sur votre machine : 
 #git clone https://github.com/Ghanouch/Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud.git
+
+------------------------------ GUIDE D'INSTALLATION ET D'UTILISATION 
 
 
 I - LANCER LE DEPLOIEMENT
