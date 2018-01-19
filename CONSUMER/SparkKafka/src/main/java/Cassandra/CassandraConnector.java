@@ -20,7 +20,7 @@ public class CassandraConnector {
     private Cluster cluster;
 
     private Session session;
-
+    // connect to the database
     public void connect(final String node, final Integer port) {
 
         Builder b = Cluster.builder().addContactPoint(node);
