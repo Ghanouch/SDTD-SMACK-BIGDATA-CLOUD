@@ -12,7 +12,7 @@ import com.datastax.driver.core.Session;
 
 import Cassandra.CryptoStats;
 import Model.GlobalStat;
-
+// Repertoir pour gérer les tables de cassandra
 public class CryptoStatsRepository {
 
     private static final String TABLE_NAME = "Stats";// Table name
@@ -26,7 +26,7 @@ public class CryptoStatsRepository {
     }
 
     /**
-     * Creates the books table.
+     * Creer la table Stats
      */
     public void createTableStats() {
         StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ")
@@ -43,7 +43,9 @@ public class CryptoStatsRepository {
         final String query = sb.toString();
         session.execute(query);
     }
-    //ADDED
+    /**
+    Créer la table GlobalStats
+    **/
     public void createTableGloablStats() {
         StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ")
         		.append("GlobalStats")
@@ -58,7 +60,9 @@ public class CryptoStatsRepository {
         final String query = sb.toString();
         session.execute(query);
     }
-    //TOADD
+    /**
+    Créer une table par nom de cryptomonnaie ex : Bitcoin : cette table contient l'historique des valeurs calculées.    
+    **/
     public void createTableByName(String name ){
     	  StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ")
           		.append(name)
@@ -79,18 +83,9 @@ public class CryptoStatsRepository {
     }
 
     /**
-     * Creates the books table.
-     */
-   /* public void createTableBooksByTitle() {
-        StringBuilder sb = new StringBuilder("CREATE TABLE IF NOT EXISTS ").append(TABLE_NAME_BY_TITLE).append("(").append("id uuid, ").append("name text,").append("PRIMARY KEY (name, id));");
-
-        final String query = sb.toString();
-        session.execute(query);
-    }*
-
-    /**
      * Alters the table books and adds an extra column.
      */
+   //Cette fonction n'a pas été utilisée dans le projet
     public void alterTablebooks(String columnName, String columnType) {
         StringBuilder sb = new StringBuilder("ALTER TABLE ")
         		.append(TABLE_NAME)
@@ -107,7 +102,7 @@ public class CryptoStatsRepository {
     /**
      * Insert a row in the table stats. 
      * 
-     * @param book
+     * @param stat
      */
     public void insertStat(CryptoStats stat) {
     	try {
@@ -136,6 +131,12 @@ public class CryptoStatsRepository {
     		e.printStackTrace();
     	}
     }
+    
+    /**
+     * Insert a row in the table stats. 
+     * 
+     * @param GlobaStat:stat
+     */
     public void insertGlobalStat(GlobalStat stat) {
     	try {
         StringBuilder sb = new StringBuilder("INSERT INTO ")
@@ -162,24 +163,8 @@ public class CryptoStatsRepository {
     	}
     }
 
-  
-
     /**
-     * Insert a coin into two identical tables using a batch query.
-     * 
-     * @param coin
-     */
-    /*public void insertCoinBatch(Coin coin) {
-        StringBuilder sb = new StringBuilder("BEGIN BATCH ").append("INSERT INTO ").append(TABLE_NAME).append("(id, name, marketcap) ").append("VALUES (").append(coin.getId()).append(", '").append(coin.getName()).append("', '").append(coin.getMarketcap())
-                .append("');").append("INSERT INTO ").append(TABLE_NAME_BY_TITLE).append("(id, name) ").append("VALUES (").append(coin.getId()).append(", '").append(coin.getName()).append("');")
-                .append("APPLY BATCH;");
-
-        final String query = sb.toString();
-        session.execute(query);
-    }*/
-
-    /**
-     * Select coin by id.
+     * Select CryptoStats by name
      * 
      * @return
      */
@@ -208,9 +193,9 @@ public class CryptoStatsRepository {
     }
 
     /**
-     * Select all coins from coins
+     * Select all stats from Stats table
      * 
-     * @return
+     * @return list<CryptoStat>
      */
     public List<CryptoStats> selectAll() {
         StringBuilder sb = new StringBuilder("SELECT * FROM ").append(TABLE_NAME);
@@ -233,27 +218,6 @@ public class CryptoStatsRepository {
         }
         return list_cryptoStats;
     }
-
-   /* public void deletebookByTitle(String name) {
-        StringBuilder sb = new StringBuilder("DELETE FROM ").append(TABLE_NAME_BY_TITLE).append(" WHERE name = '").append(name).append("';");
-
-        final String query = sb.toString();
-        session.execute(query);
-    }*/
-   /* public List<Coin> selectAllBookByTitle() {
-        StringBuilder sb = new StringBuilder("SELECT * FROM ").append(TABLE_NAME_BY_TITLE);
-
-        final String query = sb.toString();
-        ResultSet rs = session.execute(query);
-
-        List<Coin> coins = new ArrayList<Coin>();
-
-        for (Row r : rs) {
-            Coin coin = new Coin(r.getUUID("id"), r.getString("name"),  null);
-            coins.add(coin);
-        }
-        return coins;
-    }*/
     /*
      * Delete table.
      * 
@@ -265,23 +229,24 @@ public class CryptoStatsRepository {
         final String query = sb.toString();
         session.execute(query);
     }
-   
+   // Supprimer toutes les lignes d'un table par nom
     public void deleteAll(String tableName) {
         StringBuilder sb = new StringBuilder("TRUNCATE ").append(tableName);
 
         final String query = sb.toString();
         session.execute(query);
     }
+    //Supprimer toutes les lignes de la table Stats
     public void deleteAllStats() {
         deleteAll(TABLE_NAME);
     }
-    //ADDED
+    //Supprimer toutes les lignes de la table GlobalStats
     public void deleteAllGlobalStats() {
         deleteAll("GlobalStats");
     }
     
     
-  //TOADD
+  //Insertion d'enregistrement dans une table de cryptomonnaie (ex Bitcoin)
     public void insertStatIntoCrypto(CryptoStats stat, String crypto) {
      	try {
         	Timestamp current_time = new Timestamp(System.currentTimeMillis());
@@ -307,27 +272,7 @@ public class CryptoStatsRepository {
                     .append(", ")
                     .append(stat.getTauxMarche())
                     .append(")");
-
-            		/*
-            		.append("(id, name, rsi_1h, rsi_24h, rsi_7d, rsi_annualise, tauxMarche) ")
-            		.append("VALUES (")
-            		.append(stat.getId())
-            		.append(", '")
-            		.append(stat.getName())
-            		.append("', ")
-            		.append(stat.getRsi_1h())
-            		.append(", ")
-            		.append(stat.getRsi_24h())
-            		.append(", ")
-            		.append(stat.getRsi_7d())
-            		.append(", ")
-            		.append(stat.getRsi_annualise())
-            		.append(", ")
-            		.append(stat.getTauxMarche())
-            		//.append("', '")
-            		.append(");");
-            		*/
-           System.out.println(sb);
+           //System.out.println(sb);
             final String query = sb.toString();
             session.execute(query);
         	}catch(Exception e)
@@ -336,15 +281,14 @@ public class CryptoStatsRepository {
         		e.printStackTrace();
         	}
     }
-  //TOADD
+  //Ajouter un enregistrement dans la table stat
   public void AddStatRecord(CryptoStats stat){
 	  String table_name = stat.getName().replace(" ","_");
 	  createTableByName(table_name);
 	  insertStatIntoCrypto(stat, table_name);
 	  
   }
-  //ADDED
-//TOADD
+//Récuperer la liste de tous les enregistrements dans une table de cryptomonnaie à partir d'une date donnée
  public List<CryptoStats> GetAllRecordsByTable(String table_name,int n_last_hour) {
 	 Timestamp current_time = new Timestamp(System.currentTimeMillis());
 	// Date d = initDate();
@@ -372,7 +316,7 @@ public class CryptoStatsRepository {
      }
      return list_cryptoStats;
  }
- //TOADD
+ //Récuperer la liste de tous les enregistrements depuis toutes les table de cryptomonnaie à partir d'une date donnée
  public List< List<CryptoStats> > GetAllRecords(List<String> tables_name,int n_last_hours){
 	 List< List<CryptoStats> > L = new ArrayList<List<CryptoStats>>() ;
 	 int n = tables_name.size();
