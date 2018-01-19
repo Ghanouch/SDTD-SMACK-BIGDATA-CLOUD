@@ -37,7 +37,8 @@ Guide d'utilisation du script:
 	4-Lancer le script wrap-up.sh en sudo si possible (parfois il faut des droits d'administrateur)
         
 	
-Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisé la commande suivante:
+Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisez la commande suivante:
+
 		+terraform destroy -var-file secret.tfvar
 ######
 
