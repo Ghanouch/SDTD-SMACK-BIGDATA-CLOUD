@@ -9,7 +9,9 @@ import com.datastax.driver.core.utils.UUIDs;
 
 import repository.CryptoStatsRepository;
 import repository.KeyspaceRepository;
-
+/**
+Ce fichier est juste pour le test et ne fait pas partie du projet.
+**/
 public class CassandraClient {
 
     public static void main(String args[]) {
