@@ -93,6 +93,41 @@ II - LANCER LE CAS D'UTILISATION
 	4- VISUALISATION DES RESULTATS SUR CASSANDRA OU PAR UN OUTILS DE VISUALISATION	
 
 
+III -  TOLERANCE AUX PANNES    
+
+1 - TOLERANCE AUX FAUTES " KAFKA "
+	  
+	 +La création du TOPÎC $TOPICNAME doit avoir un facteur de réplication supérieur à 1  ( facteur sur le fichier AUTOAMISATION DE CAS D'UTILISATION/UseCase.sh)
+	 +les adresses IP sur le fichier hosts 
+	 +il faut se connecter à la machine bastion :  ssh -i deployer ubuntu@$bastion_Ip
+
+	  1 - TUER LE MASTER DE KAFKA  : 
+	  	 se connecter à une machine KAFKA 
+	  	 	 #ssh -i cluster_interconnection ubuntu@$kafka_Ip1
+	 	 A- Extraire  l'Id dun Leader KAFKA d'un TOPIC 
+	 		
+	 		#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 					$TOPICNAME | grep Leader
+
+	 	 B- ARRETTER LA MACHINE QUI EST LEADER ( Qui a ID de Leader)
+	 	 	# CHERCHER LA MACHINE SUR AWS ET L ARRETER MANUELLEMENT 
+	 	 	|| ssh -i cluster_interconnection ubuntu@LeaderIP sh shutdown 
+
+	  2 - VERIFIER LE NOUVEAU LEADER { les machines vivants ainsi que les machines mortes }
+	  		#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 				$TOPICNAME | grep Leader
+
+2 - TOLERANCE AUX FAUTES " ZOOKEPER "
+
+
+		1 -   CREER UN TOPIC EN LE DONNANT DEUX MACHINES ZOOKEPER 
+			# /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --create --replication-factor 2 --partitions 1 --zookeeper $ZookeperIP1:2181,$ZookeperIP2:2181 --topic $TOPICNAME
+			
+		2 -   TUER UNE MACHINE SUR LE GROUP DE ZOOKEPPER
+  	 		  #ssh -i cluster_interconnection ubuntu@$ZookeperIP1 sh shutdown 
+
+
+		3 -   VOIR LA REPLICATIONS D'UN TOPIC MEME ZOOKEPER EST MORT 
+			# /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper 							$ZookeperIP1:2181,$ZookeperIP2:2181 --topic $TOPICNAME
+		
 ---------LA DESCRIPTION DE LA REALISATION DU CAS D'UTILISATION 
 
 ---I   PRODUCER  
