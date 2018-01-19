@@ -41,7 +41,7 @@ className="RddStatistique"
 
 #III--The creation of the Topic on one or more Kafka broker, while specifying a set of parameters (Zookeper IP, the factor of replication, the name of the Topic)
 
-ssh -i cluster_interconnection_cle ubuntu@$KAFKA1 /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --create --replication-factor $REP_FACTOR --partitions 1 --zookeeper $ZK1:2181 --topic $TOPIC_NAME
+ssh -i cluster_interconnection ubuntu@$KAFKA1 /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --create --replication-factor $REP_FACTOR --partitions 1 --zookeeper $ZK1:2181 --topic $TOPIC_NAME
 
 #IV-- Launch of JOB PRODUCER on a machine that has the role producer 
 
@@ -49,11 +49,11 @@ cmd_get_producer="wget '$LIEN_JOB_PRODUCER' -O Producer_Crypto.tar.gz"
 NOM_JOB_PRODUCER="Producer_Crypto.jar"
 
 #WGET JOB ON PRODUCER
-ssh -i cluster_interconnection_cle ubuntu@$PRODUCER $cmd_get_producer
-ssh -i cluster_interconnection_cle ubuntu@$PRODUCER tar -xvzf Producer_Crypto.tar.gz
+ssh -i cluster_interconnection ubuntu@$PRODUCER $cmd_get_producer
+ssh -i cluster_interconnection ubuntu@$PRODUCER tar -xvzf Producer_Crypto.tar.gz
 
 #EXECUTE JOB ON PRODUCER
-ssh -i cluster_interconnection_cle ubuntu@$PRODUCER java -jar $NOM_JOB_PRODUCER --broker:$KAFKA1:9092 --topic:$TOPIC_NAME --BORNE_MINIMAL:$BORNE_MINIMAL --BORNE_MAXIMAL:$BORNE_MAXIMAL --speed:$SPEED &
+ssh -i cluster_interconnection ubuntu@$PRODUCER java -jar $NOM_JOB_PRODUCER --broker:$KAFKA1:9092 --topic:$TOPIC_NAME --BORNE_MINIMAL:$BORNE_MINIMAL --BORNE_MAXIMAL:$BORNE_MAXIMAL --speed:$SPEED &
 
 
 # V-Launching the JOB Consumer on a machine running the Spark Driver service
@@ -64,13 +64,13 @@ NOM_JOB_CONSUMER="RDD_Crypto.jar"
 
 # METHOD 1 : - WGET JOB ON CONSUMER ( MESOS )
 
-#ssh -i cluster_interconnection_cle ubuntu@$MESOS_MASTER $cmd_get_consumer
-#ssh -i cluster_interconnection_cle ubuntu@$MESOS_MASTER tar RDD_Crypto.tar
+#ssh -i cluster_interconnection ubuntu@$MESOS_MASTER $cmd_get_consumer
+#ssh -i cluster_interconnection ubuntu@$MESOS_MASTER tar RDD_Crypto.tar
 
 # METHOD 2 : Send JOB to Mesos Master 
-scp -i cluster_interconnection_cle -o StrictHostKeyChecking=no $NOM_JOB_CONSUMER ubuntu@$MESOS_MASTER:~/
+scp -i cluster_interconnection -o StrictHostKeyChecking=no $NOM_JOB_CONSUMER ubuntu@$MESOS_MASTER:~/
 #Execute Job COnsumer With Spark
-ssh -i cluster_interconnection_cle ubuntu@$MESOS_MASTER /home/ubuntu/spark-2.2.1-bin-hadoop2.7/bin/spark-submit --class \"$className\" --master local[4] $NOM_JOB_CONSUMER $KAFKA1:9092 $TOPIC_NAME $CASSANDRA &
+ssh -i cluster_interconnection ubuntu@$MESOS_MASTER /home/ubuntu/spark-2.2.1-bin-hadoop2.7/bin/spark-submit --class \"$className\" --master local[4] $NOM_JOB_CONSUMER $KAFKA1:9092 $TOPIC_NAME $CASSANDRA &
 
 
 
