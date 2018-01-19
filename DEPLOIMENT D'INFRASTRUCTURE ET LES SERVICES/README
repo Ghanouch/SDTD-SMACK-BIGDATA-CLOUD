@@ -1,3 +1,6 @@
+#####
+Prérequis: Installer terraform: https://www.terraform.io/intro/getting-started/install.html
+#####
 Guide d'utilisation du script:
 
 	1-Génerer 2 clé RSA une pour le bastion et l'autre pour le reste de la stack grâce à: "ssh-keygen"
