@@ -108,42 +108,51 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 
 ### III -  Tolérances aux pannes :  ###
 
-1 - TOLERANCE AUX FAUTES " KAFKA "
+- Tolérances aux pannes " KAFKA " :
 	  
-	 +La création du TOPÎC $TOPICNAME doit avoir un facteur de réplication supérieur à 1  ( facteur sur le fichier AUTOAMISATION DE CAS D'UTILISATION/UseCase.sh)
-	 +les adresses IP sur le fichier hosts 
-	 +il faut se connecter à la machine bastion :  ssh -i deployer ubuntu@$bastion_Ip
+- La création du TOPÎC $TOPICNAME doit avoir un facteur de réplication supérieur à 1  ( facteur sur le fichier AUTOAMISATION DE CAS D'UTILISATION/UseCase.sh)
+- les adresses IP sur le fichier hosts 
+- il faut se connecter à la machine bastion :  ssh -i deployer ubuntu@$bastion_Ip
 
-	  1 - TUER LE MASTER DE KAFKA  : 
-	  	 se connecter à une machine KAFKA 
-	  	 	 #ssh -i cluster_interconnection ubuntu@$kafka_Ip1
-	 	 A- Extraire  l'Id dun Leader KAFKA d'un TOPIC 
-	 		
-	 		#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 					$TOPICNAME | grep Leader
+- TUER LE MASTER DE KAFKA  : 
+- De connecter à une machine KAFKA
+```
+ #ssh -i cluster_interconnection ubuntu@$kafka_Ip1
+```
+- Extraire  l'Id dun Leader KAFKA d'un TOPIC 
+```
+#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 					$TOPICNAME | grep Leader
+```
+- Arrêt de la machine leader ( Qui a ID de Leader)
+- Arreter la machine manuellement:
+```
+ssh -i cluster_interconnection ubuntu@LeaderIP sh shutdown 
+```
+- Vérifier le nouveau leader { les machines vivantes ainsi que les machines mortes }
+```
+#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 				$TOPICNAME | grep Leader
+```
 
-	 	 B- ARRETTER LA MACHINE QUI EST LEADER ( Qui a ID de Leader)
-	 	 	# CHERCHER LA MACHINE SUR AWS ET L ARRETER MANUELLEMENT 
-	 	 	|| ssh -i cluster_interconnection ubuntu@LeaderIP sh shutdown 
-
-	  2 - VERIFIER LE NOUVEAU LEADER { les machines vivants ainsi que les machines mortes }
-	  		#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 				$TOPICNAME | grep Leader
-
-2 - TOLERANCE AUX FAUTES " ZOOKEPER "
+- Tolérances aux pannes " ZOOKEEPER "
 
 
-		1 -   CREER UN TOPIC EN LE DONNANT DEUX MACHINES ZOOKEPER 
-			# /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --create --replication-factor 2 --partitions 1 --zookeeper $ZookeperIP1:2181,$ZookeperIP2:2181 --topic $TOPICNAME
+- Creer un Topic en lui donnant deux machines ZooKeeper
+```
+# /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --create --replication-factor 2 --partitions 1 --zookeeper $ZookeperIP1:2181,$ZookeperIP2:2181 --topic $TOPICNAME
+```
 			
-		2 -   TUER UNE MACHINE SUR LE GROUP DE ZOOKEPPER
-  	 		  #ssh -i cluster_interconnection ubuntu@$ZookeperIP1 sh shutdown 
+- Tuer une machine Zookeeper
+```
+  #ssh -i cluster_interconnection ubuntu@$ZookeperIP1 sh shutdown 
+```
+
+- La réplication du Topic se fait même si le ZooKeeper est mort
+```
+# /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper 							$ZookeperIP1:2181,$ZookeperIP2:2181 --topic $TOPICNAME
+```		
 
 
-		3 -   VOIR LA REPLICATIONS D'UN TOPIC MEME ZOOKEPER EST MORT 
-			# /home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper 							$ZookeperIP1:2181,$ZookeperIP2:2181 --topic $TOPICNAME
-		
-
-
-PS : plus de détail, veuillez consulter le rapport ci-joint 
+PS : Ce git fait suite au rapport
 
 
 	
