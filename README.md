@@ -90,12 +90,13 @@ BORNE_MAXIMAL="25"
 SPEED="2"
 ```
  - Dans le fichier "Remote-UseCase.sh"
-
-			# PARAMS OF KEY NAMES AND PATHS
-			NOM_CLE_DEPLOY = "deployer"
-			NOM_SCRIPT_HOSTS="hosts"
-			NOM_KEY_INTERCONNECTION="cluster_interconnection"
-			NOM_JOB_CONSUMER="RDD_Crypto.jar"
+```
+# PARAMS OF KEY NAMES AND PATHS
+NOM_CLE_DEPLOY = "deployer"
+NOM_SCRIPT_HOSTS="hosts"
+NOM_KEY_INTERCONNECTION="cluster_interconnection"
+NOM_JOB_CONSUMER="RDD_Crypto.jar"
+```
 			
  - Lancer le script sur "AUTOMATISATION USE CASE"
 ```
