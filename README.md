@@ -1,51 +1,57 @@
 # Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud
 
-Lien :   https://github.com/Ghanouch/Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud.git
+ ## Guide d'installation et d'utilisation ##
 
-Copier le projet sur votre machine : 
+- Clonner le projet sur votre machine : 
+```
 #git clone https://github.com/Ghanouch/Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud.git
+```
 
------------------------------- GUIDE D'INSTALLATION ET D'UTILISATION 
+### I - Lancement du deploiment : ###
 
-
-I - LANCER LE DEPLOIEMENT
-
-ENTRER SUR LE CHEMIN SUIVANT  : 
+- Executer la commande suivante  : 
+```
 #cd DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform
-
+```
 #####
-Prérequis: Installer terraform: https://www.terraform.io/intro/getting-started/install.html
+- Installer préalablement terraform: https://www.terraform.io/intro/getting-started/install.html
 #####
-Guide d'utilisation du script:
 
-	1-Génerer 2 clé RSA une pour le bastion et l'autre pour le reste de la stack grâce à: "ssh-keygen"
-	  +Vous devez choisir les noms "deployer" et "cluster_interconnection" respectivement pour la clé du bastion 
-	   et la clé de la stack
-	  +Elles doivent être mises dans le dossier "terraform"
-		#ssh-keygen
+- Génerer 2 clé RSA une pour le bastion et l'autre pour le reste de la stack grâce à:
+```
+#ssh-keygen
+```
+- Vous devez choisir alors les noms à attribuer aux clés. Ex : "deployer" et "cluster_interconnection" respectivement pour la clé du bastion et la clé de la stack. Elles doivent être mises dans le dossier "terraform"
+		
+- Ouvrir le fichier "secret.tfvars" dans le dossier "terraform" et remplir les champs suivants:
+```
+access_key et secret_key : respectivement la clé d'accès et la clé secrète de votre utilisateur AWS  
 
-	2-Ouvrir le fichier "secret.tfvars" dans le dossier "terraform" et remplir les champs suivants:
-	  + access_key et secret_key : respectivement la clé d'accès et la clé secrète de votre utilisateur AWS  
-	  + region: la région où le cluster va être déployé, exemple: "us-east-1"
-	  + ami: ami de la machine ubuntu 16.04 d'AWS, on la retrouve lorsqu'on essaie de créer manuellement une machine
-	  + cassandra_ami: même que "ami" mais celle de ubuntu 14.04
-	  + deployer_public_key: le contenu de la clé publique du bastion
-	  + cluster_public_key: le contenu de la clé publique de la stack
-	  + cassandra_instance_type: la taille des machines cassandra (minimum medium)
-	  + opscenter_instace_type: la taille de la machine opscenter (minimum medium)
+region: la région où le cluster va être déployé, exemple: "us-east-1"
 
-	3-Lancer le script wrap-up.sh en sudo si possible (parfois il faut des droits d'administrateur)
+ami: ami de la machine ubuntu 16.04 d'AWS, on la retrouve lorsqu'on essaie de créer manuellement une machine (nous ne pouvons malheusement pas vous en donner, puiqu'elles changent en continu)
+
+cassandra_ami: même que "ami" mais celle de ubuntu 14.04
+
+deployer_public_key: le contenu de la clé publique du bastion
+
+cluster_public_key: le contenu de la clé publique de la stack
+
+cassandra_instance_type: la taille des machines cassandra (minimum medium)
+
+opscenter_instace_type: la taille de la machine opscenter (minimum medium)
+```
+- En fin,lancer le script wrap-up.sh en sudo si possible (parfois il faut des droits d'administrateur)
         
 	
-Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisez la commande suivante:
-
-		+terraform destroy -var-file secret.tfvars
+- Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisez la commande suivante:
+```terraform destroy -var-file secret.tfvars```
 ######
 
 
-II - LANCER LE CAS D'UTILISATION
+### II - Lancement du cas d'utilisation : ###
 
-	1- COPIER LES FICHIERS SUIVANT :  hosts ET les deux clé générées ( cluster_interconnection,deployer )  QUI SONT SUR le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", ET VEUILLEZ LES METTRE  SUR LE DOSSIER "AUTOMATISATION USE CASE"
+- **Copier** les fichiers : hosts et les deux clés générées ( cluster_interconnection, deployer ) qui sont dans le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", et les mettre dans le dossier "AUTOMATISATION USE CASE"
 
 		#cd AUTOMATISATION\ USE\ CASE/
 
@@ -53,24 +59,26 @@ II - LANCER LE CAS D'UTILISATION
 		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/deployer .
 		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/cluster_interconnection .
 
-	2- ENTRER SUR LE DOSSIER "AUTOMATISATION USE CASE"
+- Aller dans le dossier "AUTOMATISATION USE CASE"
 
- 	2-1.- METTRE SUR LE DOSSIER "AUTOMATISATION USE CASE" LE JOB DE CONSUMER 
+- Inclure dans le dossier "AUTOMATISATION USE CASE" le Job du Consumer: 
 
-	VOUS AVEZ DEUX CHOIX POUR L'AVOIR : 
+*Vous avez deux choix pour l'avoir :* 
 
-		2.1 TELECHERGER LE JOB QUI EST SUR LE LIEN SUIVANT :
-			http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
+- A travers le lien suivant :
+http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 
- 		2.2 AVOIR LE JOB A PARTIR DU CODE SOURCE SUR LE DOSSIER : "CONSUMER/SparkKafka" PAR MAVEN 
+- A partir du dossier : "CONSUMER/SparkKafka" PAR MAVEN 
+```
 			 # cd SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/
 			 # mvn package 
 			 copier le jar généré sur "AUTOMATISATION USE CASE" et le renomer à RDD_Crypto.jar
 			 # mv target/SparkKafka-0.0.1-SNAPSHOT.jar RDD_Crypto.jar
 			 # cp RDD_Crypto.jar ../../AUTOMATISATION\ USE\ CASE/
-	
-	2-2-Configurer l'ensemble des paramétres :
-		    2-1-1 sur le fichier "UseCase.sh" ( Path  : SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION\ USE\ CASE/)
+```
+
+- Configurer l'ensemble des paramétres :
+-  Dans le fichier "UseCase.sh" ( Path  : SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION\ USE\ CASE/)
 
 			# PARAMS OF TOPIC CREATION 
 			TOPIC_NAME="NV_TOPIC"
@@ -82,7 +90,7 @@ II - LANCER LE CAS D'UTILISATION
 			BORNE_MAXIMAL="25"
 			SPEED="2"
 
-		    2-1-2 sur le fichier "Remote-UseCase.sh"
+ - Dans le fichier "Remote-UseCase.sh"
 
 			# PARAMS OF KEY NAMES AND PATHS
 			NOM_CLE_DEPLOY = "deployer"
@@ -90,20 +98,19 @@ II - LANCER LE CAS D'UTILISATION
 			NOM_KEY_INTERCONNECTION="cluster_interconnection"
 			NOM_JOB_CONSUMER="RDD_Crypto.jar"
 			
-	3- LANCER LE FLUX DE CAS D'UTILISATION sur "AUTOMATISATION USE CASE"
+ - Lancer l'jar sur "AUTOMATISATION USE CASE"
 		# cd AUTOMATISATION\ USE\ CASE/
 		# sh Remote-UseCase.sh
 
-	4- VISUALISATION DES RESULTATS SUR CASSANDRA OU PAR UN OUTILS DE VISUALISATION.	
+-  Vous pourrez visualiser le tout grâce au Zeppelin ou à l'OpsCenter (mdp : admin, mdp : admin) 	
 
 
-III -  TOLERANCE AUX PANNES    
+III -  Tolérances aux pannes :    
 
 1 - TOLERANCE AUX FAUTES " KAFKA "
 	  
 	 +La création du TOPÎC $TOPICNAME doit avoir un facteur de réplication supérieur à 1  ( facteur sur le fichier AUTOAMISATION DE CAS D'UTILISATION/UseCase.sh)
-	 +les adresses IP sur le fichier hosts 	
-	 +les variables ($ZookeperIP,$kafka_Ip1 ... ) à remplacé par leurs addresses IP sur hosts
+	 +les adresses IP sur le fichier hosts 
 	 +il faut se connecter à la machine bastion :  ssh -i deployer ubuntu@$bastion_Ip
 
 	  1 - TUER LE MASTER DE KAFKA  : 
@@ -120,7 +127,7 @@ III -  TOLERANCE AUX PANNES
 	  2 - VERIFIER LE NOUVEAU LEADER { les machines vivants ainsi que les machines mortes }
 	  		#/home/ubuntu/kafka/kafka_2.11-1.0.0/bin/kafka-topics.sh --describe --zookeeper @ZookeperIP:2181 --topic 				$TOPICNAME | grep Leader
 
-2 - TOLERANCE AUX FAUTES " zookeeper  "
+2 - TOLERANCE AUX FAUTES " ZOOKEPER "
 
 
 		1 -   CREER UN TOPIC EN LE DONNANT DEUX MACHINES ZOOKEPER 
@@ -137,5 +144,6 @@ III -  TOLERANCE AUX PANNES
 
 PS : plus de détail, veuillez consulter le rapport ci-joint 
 
+-------------------- FIN 
 
 	
