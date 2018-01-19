@@ -52,13 +52,12 @@ opscenter_instace_type: la taille de la machine opscenter (minimum medium)
 ### II - Lancement du cas d'utilisation : ###
 
 - **Copier** les fichiers : hosts et les deux clés générées ( cluster_interconnection, deployer ) qui sont dans le dossier "DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform", et les mettre dans le dossier "AUTOMATISATION USE CASE"
-
-		#cd AUTOMATISATION\ USE\ CASE/
-
-		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/hosts .
-		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/deployer .
-		#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/cluster_interconnection .
-
+```
+#cd AUTOMATISATION\ USE\ CASE/
+#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/hosts .
+#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/deployer .
+#cp ../DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform/cluster_interconnection .
+```
 - Aller dans le dossier "AUTOMATISATION USE CASE"
 
 - Inclure dans le dossier "AUTOMATISATION USE CASE" le Job du Consumer: 
