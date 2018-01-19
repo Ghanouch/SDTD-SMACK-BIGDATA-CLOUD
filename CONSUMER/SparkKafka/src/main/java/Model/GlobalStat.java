@@ -1,4 +1,6 @@
 package Model;
+/** Cette classe représente le model logique pour encapsuler les variables calculées à partir de l'historqie des données
+de chaque cryptomonnaie , à savoir : moyenne , ecart_type , sens evolution et volatilité ***/
 public class GlobalStat{
 	String name ; 
 	double moyenne ; 
