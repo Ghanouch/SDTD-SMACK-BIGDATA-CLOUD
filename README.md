@@ -99,9 +99,10 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 			NOM_JOB_CONSUMER="RDD_Crypto.jar"
 			
  - Lancer l'jar sur "AUTOMATISATION USE CASE"
+```
 		# cd AUTOMATISATION\ USE\ CASE/
 		# sh Remote-UseCase.sh
-
+```
 -  Vous pourrez visualiser le tout grâce au Zeppelin ou à l'OpsCenter (mdp : admin, mdp : admin) 	
 
 
