@@ -4,7 +4,7 @@ package repository;
 import com.datastax.driver.core.Session;
 
 /**
- * Repository to handle the Cassandra schema.
+ * Repertoire pour la gestion du schéma de cassandre
  *
  */
 public class KeyspaceRepository {
@@ -12,9 +12,8 @@ public class KeyspaceRepository {
 
     public KeyspaceRepository(Session session) {
         this.session = session;
-    }
-
-    /**
+    }  
+      /**
      * Method used to create any keyspace - schema.
      * 
      * @param schemaName the name of the schema.
@@ -22,13 +21,6 @@ public class KeyspaceRepository {
      * @param numberOfReplicas the number of replicas.
      * 
      */
-    //ADDED
-    public void DropKeyspace(String keyspace) {
-        StringBuilder sb = new StringBuilder("DROP KEYSPACE IF EXISTS ").append(keyspace);
-
-        final String query = sb.toString();
-        session.execute(query);
-    }
     public void createKeyspace(String keyspaceName, String replicatioonStrategy, int numberOfReplicas) {
         StringBuilder sb = new StringBuilder("CREATE KEYSPACE IF NOT EXISTS ").append(keyspaceName).append(" WITH replication = {").append("'class':'").append(replicatioonStrategy).append("','replication_factor':").append(numberOfReplicas).append("};");
 
@@ -52,6 +44,13 @@ public class KeyspaceRepository {
 
         final String query = sb.toString();
 
+        session.execute(query);
+    }
+     //Supprimer un keyspace par nom : cette fonction n'est pas utilisée dans le projet
+    public void DropKeyspace(String keyspace) {
+        StringBuilder sb = new StringBuilder("DROP KEYSPACE IF EXISTS ").append(keyspace);
+
+        final String query = sb.toString();
         session.execute(query);
     }
 }
