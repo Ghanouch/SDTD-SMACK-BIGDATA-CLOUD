@@ -1,18 +1,3 @@
-# Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud
-
- ## Guide d'installation et d'utilisation ##
-
-- Clonner le projet sur votre machine : 
-```
-#git clone https://github.com/Ghanouch/Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud.git
-```
-
-### I - Lancement du deploiment : ###
-
-- Executer la commande suivante  : 
-```
-#cd DEPLOIMENT\ D\'INFRASTRUCTURE\ ET\ LES\ SERVICES/terraform
-```
 #####
 - Installer préalablement terraform: https://www.terraform.io/intro/getting-started/install.html
 #####
@@ -47,3 +32,4 @@ opscenter_instace_type: la taille de la machine opscenter (minimum medium)
 - Si vous voulez détruire la stack, ouvrez un termial dans le dossier "terraform" et utilisez la commande suivante:
 ```terraform destroy -var-file secret.tfvars```
 ######
+
