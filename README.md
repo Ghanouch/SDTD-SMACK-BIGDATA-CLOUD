@@ -100,7 +100,8 @@ III -  TOLERANCE AUX PANNES
 1 - TOLERANCE AUX FAUTES " KAFKA "
 	  
 	 +La création du TOPÎC $TOPICNAME doit avoir un facteur de réplication supérieur à 1  ( facteur sur le fichier AUTOAMISATION DE CAS D'UTILISATION/UseCase.sh)
-	 +les adresses IP sur le fichier hosts 
+	 +les adresses IP sur le fichier hosts 	
+	 +les variables ($ZookeperIP,$kafka_Ip1 ... ) à remplacé par leurs addresses IP sur hosts
 	 +il faut se connecter à la machine bastion :  ssh -i deployer ubuntu@$bastion_Ip
 
 	  1 - TUER LE MASTER DE KAFKA  : 
