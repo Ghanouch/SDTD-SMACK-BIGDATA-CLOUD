@@ -145,6 +145,5 @@ III -  Tolérances aux pannes :
 
 PS : plus de détail, veuillez consulter le rapport ci-joint 
 
--------------------- FIN 
 
 	
