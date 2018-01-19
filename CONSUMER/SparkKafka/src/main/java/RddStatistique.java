@@ -79,7 +79,7 @@ public class RddStatistique implements Serializable {
 							});
 			return stats ; 
 		}
-		//ADDED 
+		//la fonction compute calcule sur une rdd de type CryptoStat différents indices comme moyenne , écart type...
 		public static GlobalStat compute(String name , JavaRDD<CryptoStats> all_stats){
 			/** compute part of market **/
 			String evolution, volatilite;
@@ -182,24 +182,26 @@ public class RddStatistique implements Serializable {
 		    */
    		    List<String> crypto_names = new ArrayList<String>(); 
    		     for(Tuple2<String,CryptoStats > t : collect_stats){
-   				crypto_names.add(t._1.replace(" ","_")); // TOADD
+   				crypto_names.add(t._1.replace(" ","_")); // récupération de la liste des noms des cryptommonnaies traitées (utilisé dans le 2ème traitement)
    				br.insertStat(t._2); // Ajout dans la table stats (contients toutes les cryptos)
    				br.AddStatRecord(t._2); // Insertion dans la table qui a le meme nom que la cryptomonnaie : l'enrigestremment contient en plus un champ timeInsert qui précise le temps d'insertion	
    			}
    			System.out.println("---Inserting stats into DataBase Done");
    			//Début de la deuxième partie de traitement
    			int n_last_hours = 24; // calcul sur la période des dernière 24heures
+			// Récuperer l'historiques de tous les cryptommonnaies (traités dans la première parite)
    			List< List<CryptoStats> > all = br.GetAllRecords(crypto_names,n_last_hours);
    			List<GlobalStat> globalStats = new ArrayList<GlobalStat>();
    			int index = 0 ;
    			for(List<CryptoStats> L : all) {
    				if(!L.isEmpty()) {
    				JavaRDD<CryptoStats> records = sc.parallelize(L);
-   				
+   				// Récupération de la liste des objets de type GlobalCrypto Calculées à l'aide de la fonction compute
    				globalStats.add(compute(crypto_names.get(index),records));
    				}
    				index++;
    			}
+			// Tri de la liste récupérée 
    			 globalStats.sort(new Comparator<GlobalStat>() {
 
 				@Override
@@ -212,10 +214,11 @@ public class RddStatistique implements Serializable {
 				}
    				
 			});
-   		//Spressions des valeures anciennes
+   	//Spressions des valeures anciennes dans la table GlobalStats
     	br.deleteAllGlobalStats();
    			 for(GlobalStat gs : globalStats) {
    				 System.out.println(gs);
+				 // Insertion des nouvelles valeures
    				 br.insertGlobalStat(gs);
    			 }
 		}});
