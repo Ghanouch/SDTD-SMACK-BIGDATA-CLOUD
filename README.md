@@ -106,7 +106,7 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 -  Vous pourrez visualiser le tout grâce au Zeppelin ou à l'OpsCenter (mdp : admin, mdp : admin) 	
 
 
-III -  Tolérances aux pannes :    
+### III -  Tolérances aux pannes :  ###
 
 1 - TOLERANCE AUX FAUTES " KAFKA "
 	  
