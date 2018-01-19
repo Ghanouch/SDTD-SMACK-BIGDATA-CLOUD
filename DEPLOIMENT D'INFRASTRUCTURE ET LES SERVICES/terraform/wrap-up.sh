@@ -57,4 +57,4 @@ scp -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no "nom de l
 scp -r -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no ../ansible ubuntu@$bastion_public_ip:~/ 
 scp -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no hosts ubuntu@$bastion_public_ip:~/ansible/ 
 
-ssh -i "nom de la du bastion" -o StrictHostKeyChecking=no ubuntu@$bastion_public_ip "export ANSIBLE_HOST_KEY_CHECKING=False && cd ansible && ansible-playbook -i hosts main.yml" 
+ssh -i "nom de la clé privée du bastion" -o StrictHostKeyChecking=no ubuntu@$bastion_public_ip "export ANSIBLE_HOST_KEY_CHECKING=False && cd ansible && ansible-playbook -i hosts main.yml" 
