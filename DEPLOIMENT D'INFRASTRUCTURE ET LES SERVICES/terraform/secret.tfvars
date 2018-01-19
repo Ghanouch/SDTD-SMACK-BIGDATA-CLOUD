@@ -7,12 +7,12 @@ cassandra_ami = ""
 #AWS DEPLOY KEY
 deployer_public_key = ""
 
-deployer_key_name = ""
+deployer_key_name = "deployer"
 
 
 
 #AWS Interconnection key
-cluster_public_key = ""
+cluster_public_key = "cluster_interconnection"
 
 
 cluster_key_name = ""
