@@ -78,17 +78,17 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 
 - Configurer l'ensemble des paramétres :
 -  Dans le fichier "UseCase.sh" ( Path  : SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION\ USE\ CASE/)
+```
+# PARAMS OF TOPIC CREATION 
+TOPIC_NAME="NV_TOPIC"
+REP_FACTOR="1"
 
-			# PARAMS OF TOPIC CREATION 
-			TOPIC_NAME="NV_TOPIC"
-			REP_FACTOR="1"
+# PARAMS OF PRODUCER JOB
 
-			# PARAMS OF PRODUCER JOB
-
-			BORNE_MINIMAL="0"
-			BORNE_MAXIMAL="25"
-			SPEED="2"
-
+BORNE_MINIMAL="0"
+BORNE_MAXIMAL="25"
+SPEED="2"
+```
  - Dans le fichier "Remote-UseCase.sh"
 
 			# PARAMS OF KEY NAMES AND PATHS
@@ -99,8 +99,8 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 			
  - Lancer le script sur "AUTOMATISATION USE CASE"
 ```
-		# cd AUTOMATISATION\ USE\ CASE/
-		# sh Remote-UseCase.sh
+# cd AUTOMATISATION\ USE\ CASE/
+# sh Remote-UseCase.sh
 ```
 -  Vous pourrez visualiser le tout grâce au Zeppelin ou à l'OpsCenter (mdp : admin, mdp : admin) 	
 
