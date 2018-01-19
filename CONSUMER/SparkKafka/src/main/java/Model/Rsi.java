@@ -1,7 +1,7 @@
 package Model;
 import java.io.Serializable;
 import java.sql.Timestamp;
-/**class not used in the project**/
+/**classe n'est pas utilisée dans le projet, elle a été remplacée par la classe CryptoSTat**/
 public class Rsi implements Serializable{
 		private static final long serialVersionUID = 1L;
 		private Timestamp time ; 
