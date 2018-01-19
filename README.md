@@ -69,11 +69,11 @@ http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
 
 - A partir du dossier : "CONSUMER/SparkKafka" PAR MAVEN 
 ```
-			 # cd SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/
-			 # mvn package 
-			 copier le jar généré sur "AUTOMATISATION USE CASE" et le renomer à RDD_Crypto.jar
-			 # mv target/SparkKafka-0.0.1-SNAPSHOT.jar RDD_Crypto.jar
-			 # cp RDD_Crypto.jar ../../AUTOMATISATION\ USE\ CASE/
+ # cd SDTD-SMACK-BIGDATA-CLOUD/CONSUMER/SparkKafka/
+ # mvn package 
+ copier le jar généré sur "AUTOMATISATION USE CASE" et le renomer à RDD_Crypto.jar
+ # mv target/SparkKafka-0.0.1-SNAPSHOT.jar RDD_Crypto.jar
+ # cp RDD_Crypto.jar ../../AUTOMATISATION\ USE\ CASE/
 ```
 
 - Configurer l'ensemble des paramétres :
