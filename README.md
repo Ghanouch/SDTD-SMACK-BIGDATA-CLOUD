@@ -102,7 +102,7 @@ II - LANCER LE CAS D'UTILISATION
 ---I   PRODUCER  
 
   1- Architecture du Producer  :
-	Voir :https://github.com/Ghanouch/SDTD-SMACK-BIGDATA-CLOUD/blob/master/IMAGES%20DE%20L'ARCHITECTURE/Architecture%20du%20Producer.PNG
+Voir :https://github.com/Ghanouch/SDTD-SMACK-BIGDATA-CLOUD/blob/master/IMAGES%20DE%20L'ARCHITECTURE/Architecture%20du%20Producer.PNG
   2- Réalisation du Producer   :  
 		
  	- Cette réalisation permet de recevoir ( en streaming ) les données des Cryptomonnaie, pratiquer un filtrage avant de passer les résultats
@@ -135,9 +135,11 @@ II - LANCER LE CAS D'UTILISATION
 ---II    CONSUMER 
 
 	1- L'Architecture du Consumer 
-	Voir : https://github.com/Ghanouch/SDTD-SMACK-BIGDATA-CLOUD/blob/master/IMAGES%20DE%20L'ARCHITECTURE/Architecture%20du%20Consumer.PNG
+Voir : https://github.com/Ghanouch/SDTD-SMACK-BIGDATA-CLOUD/blob/master/IMAGES%20DE%20L'ARCHITECTURE/Architecture%20du%20Consumer.PNG
+	
 	2- Rélisation de Consumer : 
-		Voir sur LE DOSSIER Consumer
+		
+		Voir sur LE DOSSIER Consumer/kafkaSPark
 
 	3- LANCEMENT DU JOB DE CONSUMER : 
 
@@ -161,7 +163,9 @@ II - LANCER LE CAS D'UTILISATION
 
 
   2- Architecture de l'automatisation 
-	https://github.com/Ghanouch/SDTD-SMACK-BIGDATA-CLOUD/blob/master/IMAGES%20DE%20L'ARCHITECTURE/Architecture%20Automatisation%20Use%20Case.PNG
+  
+Voir : https://github.com/Ghanouch/SDTD-SMACK-BIGDATA-CLOUD/blob/master/IMAGES%20DE%20L'ARCHITECTURE/Architecture%20Automatisation%20Use%20Case.PNG
+
 	 #-L'architecture suivante montre l'ensemble des machines requises et aussi le sénario mis en oeuvre  pour 
 	 	réaliser cette automatisation :
 
@@ -200,7 +204,8 @@ II - LANCER LE CAS D'UTILISATION
 
 
 
+PS : plus de détail, veuillez consulter le rapport ci-joint 
 
-
+-------------------- FIN 
 
 	
