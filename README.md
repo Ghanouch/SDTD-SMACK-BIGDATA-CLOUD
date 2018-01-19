@@ -6,10 +6,10 @@ Copier le projet sur votre rmachine :
 #git clone https://github.com/Ghanouch/Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud.git
 
 
-I - LANCER LE DEPLOIEMENT ( README MEHDI)
+I - LANCER LE DEPLOIEMENT
 
 ENTRER SUR LE CHEMIN SUIVANT  : 
-#cd DEPLOIEMENT/terraform
+#cd EPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform
 
 Guide d'utilisation du script:
 
@@ -45,13 +45,27 @@ II - LANCER LE CAS D'UTILISATION
 
 		#cd SDTD-SMACK-BIGDATA-CLOUD/AUTOMATISATION USE CASE
 
-		#cp DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/hosts .
-		#cp DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/deploy_cle .
-		#cp DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/cluster_interconnection_cle .
+		#cp ../DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/hosts .
+		#cp ../DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/deploy .
+		#cp ../DEPLOIMENT D'INFRASTRUCTURE ET LES SERVICES/terraform/cluster_interconnection .
 
 	2- ENTRER SUR LE DOSSIER "AUTOMATISATION USE CASE"
 
-		2-1-Configurer l'ensemble des paramétres sur le fichier "UseCase.sh"
+ 	2-1.- METTRE SUR LE DOSSIER "AUTOMATISATION USE CASE" LE JOB DE CONSUMER 
+
+	VOUS AVEZ DEUX CHOIX POUR L'AVOIR : 
+
+		2.1 TELECHERGER LE JOB QUI EST SUR LE LIEN SUIVANT :
+			http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
+
+ 		2.2 AVOIR LE JOB A PARTIR DU CODE SOURCE SUR LE DOSSIER : "CONSUMER/SparkKafka" PAR MAVEN 
+			# cd CONSUMER/SparkKafka
+			 # mvn package 
+			 #copier le jar existant à CONSUMER/SparkKafka/target/ sur "AUTOMATISATION USE CASE"
+			 #le renomer à RDD_Crypto.jar
+	
+	2-2-Configurer l'ensemble des paramétres :
+		    2-1-1 sur le fichier "UseCase.sh"
 
 			# PARAMS OF TOPIC CREATION 
 			TOPIC_NAME="NV_TOPIC"
@@ -62,7 +76,7 @@ II - LANCER LE CAS D'UTILISATION
 			BORNE_MINIMAL="0"
 			BORNE_MAXIMAL="25"
 			SPEED="2"
-			
+		   2-1-2 sur le fichier "Remote-UseCase.sh"
 			# PARAMS OF KEY NAMES AND PATHS
 			NOM_CLE_DEPLOY = "deploy"
 			NOM_SCRIPT_HOSTS="hosts"
@@ -71,23 +85,12 @@ II - LANCER LE CAS D'UTILISATION
 			
 
 
-		 2-2.- METTRE SUR LE DOSSIER "AUTOMATISATION USE CASE" LE JOB DE CONSUMER 
-
-		 	VOUS AVEZ DEUX CHOIX POUR L'AVOIR : 
-
-		 		2.1 TELECHERGER LE JOB QUI EST SUR LE LIEN SUIVANT :
-		 			http://www.mediafire.com/file/dd2dfyfkx9iyo9q/RDD_Crypto.jar
-
-		 		2.2 AVOIR LE JOB A PARTIR DU CODE SOURCE SUR LE DOSSIER : "CONSUMER/SparkKafka" PAR MAVEN 
-			 		 # cd CONSUMER/SparkKafka
-			 		 # mvn package 
-			 		 #copier le jar existant à CONSUMER/SparkKafka/target/ sur "AUTOMATISATION USE CASE"
-			 		 #le renomer à RDD_Crypto.jar
 
 
 	3- LANCER LE FLUX DE CAS D'UTILISATION sur "AUTOMATISATION USE CASE"
-	# cd "AUTOMATISATION USE CASE"
-	# sh Remote-UseCase.sh
+		# cd "AUTOMATISATION USE CASE"
+		# sh Remote-UseCase.sh
+	4- VISUALISATION DES RESULTATS SUR CASSANDRA OU PAR UN OUTILS DE VISUALISATION	
 
 
 ---------LA DESCRIPTION DE LA REALISATION DU CAS D'UTILISATION 
