@@ -1,5 +1,5 @@
 # Systemes-Distribues-pour-le-Traitement-de-Donnees-sur-le-cloud
-
+###### En ce qui conserne l'OPSCENTER, le nom d'utilisateur est : admin et le MDP : admin 
  ## Guide d'installation et d'utilisation ##
 
 - Clonner le projet sur votre machine : 
